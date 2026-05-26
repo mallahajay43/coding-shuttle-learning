@@ -1,3 +1,7 @@
 spring:
   application:
     name: coding-shuttle-learning
+
+debug: true
+syrup:
+  type: strawberry
