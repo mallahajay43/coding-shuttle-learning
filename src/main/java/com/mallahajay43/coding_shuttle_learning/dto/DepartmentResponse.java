@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Data
 public class DepartmentResponse {
     private Long id;
-    private String title;
+    private String name;
     @JsonProperty("isActive")
     private Boolean isActive;
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "hh:mm:ss dd:MM:yyyy")

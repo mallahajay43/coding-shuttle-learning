@@ -1,4 +1,4 @@
-package com.mallahajay43.coding_shuttle_learning.entity;
+package com.mallahajay43.coding_shuttle_learning.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
@@ -25,7 +25,7 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String title;
+    private String name;
 
     @JsonProperty("isActive") // Need to set the jsonProperty name else, isActive will be treated as the getter.
     private Boolean isActive;

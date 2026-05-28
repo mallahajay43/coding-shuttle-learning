@@ -2,7 +2,7 @@ package com.mallahajay43.coding_shuttle_learning.service;
 
 import com.mallahajay43.coding_shuttle_learning.dto.DepartmentRequest;
 import com.mallahajay43.coding_shuttle_learning.dto.DepartmentResponse;
-import com.mallahajay43.coding_shuttle_learning.entity.Department;
+import com.mallahajay43.coding_shuttle_learning.entities.Department;
 import com.mallahajay43.coding_shuttle_learning.exception.ResourceNotFoundException;
 import com.mallahajay43.coding_shuttle_learning.repository.DepartmentRepository;
 import org.modelmapper.ModelMapper;

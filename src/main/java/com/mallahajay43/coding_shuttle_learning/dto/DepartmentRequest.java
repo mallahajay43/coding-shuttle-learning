@@ -9,7 +9,7 @@ import lombok.Data;
 public class DepartmentRequest {
     @NotBlank
     @Pattern(regexp = "^[a-zA-Z]+( [a-zA-Z]+)*$", message = "title should contain only characters")
-    private String title;
+    private String name;
 
     @JsonProperty("isActive")
     private Boolean isActive;
