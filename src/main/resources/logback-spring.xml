@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <configuration>
+
+    <!-- Define the log directory path and base file name -->
+    <property name="LOG_DIR" value="./logs" />
+    <property name="LOG_FILE" value="app" />
+
+    <!-- 1. Console Appender (For local development terminal output) -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+    <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+    </appender>
+
+    <!-- 2. Rolling File Appender (For production file rotation) -->
+    <appender name="ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <!-- Active log file path -->
+    <file>${LOG_DIR}/${LOG_FILE}.log</file>
+
+  <!-- Rotation Policy: Daily + Size-Based -->
+    <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+    <!-- Archived file name pattern (includes date and index counter) -->
+    <fileNamePattern>${LOG_DIR}/archived/${LOG_FILE}-%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+
+    <!-- Rotate a file if it exceeds 10 MB -->
+    <maxFileSize>10MB</maxFileSize>
+
+    <!-- Keep 30 days of history -->
+    <maxHistory>30</maxHistory>
+
+    <!-- Cap total size of all logs combined at 2 GB -->
+    <totalSizeCap>2GB</totalSizeCap>
+    </rollingPolicy>
+
+    <encoder>
+    <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+    </appender>
+
+    <!-- 3. Profile Specific Logging Rules -->
+  <!-- Local development profile: Log to Console only -->
+    <springProfile name="dev">
+    <root level="INFO">
+    <appender-ref ref="CONSOLE" />
+    </root>
+    </springProfile>
+
+  <!-- Production/Staging profile: Log to both Console and Rotating Files -->
+    <springProfile name="prod,staging">
+    <root level="INFO">
+    <appender-ref ref="CONSOLE" />
+    <appender-ref ref="ROLLING_FILE" />
+    </root>
+    </springProfile>
+
+    <!-- Default fallback if no profile is active -->
+    <root level="INFO">
+    <appender-ref ref="CONSOLE" />
+    <appender-ref ref="ROLLING_FILE" />
+    </root>
+
+    </configuration>
