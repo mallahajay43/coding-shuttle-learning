@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Entity
 @Getter @Setter
-public class Posts extends AuditEntity{
+public class Post extends AuditEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +18,7 @@ public class Posts extends AuditEntity{
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "creator_id", nullable = false)
-    private Users creator;
+    private User creator;
 }

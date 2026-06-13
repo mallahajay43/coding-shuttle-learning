@@ -9,11 +9,12 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.domain.AuditorAware;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
 @MappedSuperclass
-@EntityListeners(EntityListeners.class)
+@EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
 public abstract class AuditEntity {

@@ -4,12 +4,10 @@ import lombok.Builder;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
 
-import java.util.List;
-import java.util.Map;
-
 @Data
 @Builder
-public class ApiError {
-    private String error;
-    private Map<String, String> errors;
+public class ResponseBody<T> {
+    private HttpStatus status;
+    private T data;
+    private ApiError error;
 }
